@@ -41,5 +41,46 @@
   </div>
 
 </div>
+
+<%= link_to "https://github.com/takumi001/","https://github.com/takumi001/" %>
+<input type="text" placeholder="a6fe695fd03809023efa81072abccf3b" class="js--key">
+<input type="button" value="apply" class="js--apply" />
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script>
+
+    (function(){
+
+        var url = 'https://api.gnavi.co.jp/RestSearchAPI/20150630/?callback=?';
+        var params = {
+            keyid: 'a6fe695fd03809023efa81072abccf3b',
+            format: 'json',
+            latitude: 35.670083,
+            longitude: 139.763267,
+            range: 1
+        };
+
+        var showResult = function(result){
+            if ( result.total_hit_count > 0 ) {
+                var res = '';
+                alert( result.total_hit_count + '件の結果が見つかりました。\n' );
+                for ( var i in result.rest ){
+                    res += result.rest[i].id + ' ' + result.rest[i].name + ' ' + result.rest[i].access.line + ' ' + result.rest[i].access.station + ' ' + result.rest[i].access.walk + '分\n';
+                }
+                alert(res);
+            } else {
+                alert( '検索結果が見つかりませんでした。' );
+            }
+        }
+
+        $(document).on('click', '.js--apply', function(){
+            params.keyid = $('.js--key').val();
+            $.getJSON(url, params, function(result){
+                showResult(result);
+            });
+        });
+
+    })(jQuery);
+
+</script>
 </body>
 </html>
