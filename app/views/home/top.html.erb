@@ -41,11 +41,8 @@
   </div>
 
 </div>
-
-<%= link_to "https://github.com/takumi001/","https://github.com/takumi001/" %>
-<input type="text" placeholder="a6fe695fd03809023efa81072abccf3b" class="js--key">
+<!-- ぐるなび api -->
 <input type="button" value="apply" class="js--apply" />
-<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script>
 
     (function(){
@@ -73,7 +70,6 @@
         }
 
         $(document).on('click', '.js--apply', function(){
-            params.keyid = $('.js--key').val();
             $.getJSON(url, params, function(result){
                 showResult(result);
             });
