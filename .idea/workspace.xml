@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e5284ba-fd7a-434d-9867-403c0293a050" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/top.html.erb" afterPath="$PROJECT_DIR$/app/views/home/top.html.erb" />
-    </list>
+    <list default="true" id="8e5284ba-fd7a-434d-9867-403c0293a050" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
     <ignored path="$PROJECT_DIR$/public/system/" />
@@ -473,12 +471,12 @@
       <workItem from="1489051946366" duration="210000" />
       <workItem from="1489251117348" duration="1022000" />
       <workItem from="1489252529046" duration="1410000" />
-      <workItem from="1489255641070" duration="3063000" />
+      <workItem from="1489255641070" duration="3192000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5705000" />
+    <option name="totallyTimeSpent" value="5834000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
