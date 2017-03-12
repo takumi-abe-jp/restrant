@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Restrant</title>
-    <%= csrf_meta_tags %>
-
+    <title>レストラン検索</title>
+    <meta charset="utf-8">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <%= yield %>
+    <!-- Navbar Start-->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand text-muted" href="#">俺のアイコン</a>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="#">検索</a></li>
+          <li><a href="#">地図</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- End of Navber -->
+
   </body>
 </html>
