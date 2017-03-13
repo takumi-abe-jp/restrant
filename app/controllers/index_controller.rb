@@ -16,13 +16,11 @@ class IndexController < ApplicationController
 
     result = open("#{url}?#{URI.encode_www_form(params)}")
     result = JSON.parse(result.read)
-    #@res = result['rest']['0']
     if result['total_hit_count'].to_i > 0 then
       @res = ''
       @res = result['total_hit_count'] + '件の結果が見つかりました。\n'
-      @res = result['rest']
-      for i in result['rest'].size do
-        @res += result['rest'][i]['id']# + ' ' + result['rest'][i]['name'] + ' ' + result['rest'][i]['access']['line'] + ' ' + result['rest'][i]['access']['station'] + ' ' + result['rest'][i]['access']['walk'] + '分\n'
+      result['rest'].size.times do |i|
+        @res += result['rest'][i]['id'] + ' ' + result['rest'][i]['name'] + ' ' + result['rest'][i]['access']['line'] + ' ' + result['rest'][i]['access']['station'] + ' ' + result['rest'][i]['access']['walk'] + '分\n'
       end
     else
       @res = '検索結果が見つかりませんでした。'
