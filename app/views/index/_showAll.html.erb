@@ -1,0 +1,34 @@
+
+<div class="row">
+
+  <% @res['rest'].size.times do |i| %>
+      <div class="col-md-4 hidden-xs">
+        <div class="text-center">
+          <%= link_to @res['rest'][i]['id'] do %>
+              <p class="bg-info">
+                <br>
+                <%
+                  image = @res['rest'][i]['image_url']['shop_image1']
+                  if image.empty? then
+                %>
+                    <%= image_tag 'no_image.jpg'%>
+                <% else %>
+                    <%= image_tag image %>
+                <% end %>
+                <br>
+                <%= @res['rest'][i]['name']%><br>
+          <% end %>
+          <br>
+          <%= @res['rest'][i]['access']['line']%>
+          <%= @res['rest'][i]['access']['station']%><br>
+          <%= @res['rest'][i]['access']['walk'] +'分'%>
+          </p>
+        </div>
+      </div>
+  <%end %>
+
+</div>
+
+<% id = @page %>
+
+<%= id %>

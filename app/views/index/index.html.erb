@@ -21,38 +21,19 @@
     </p>
   </div>
 
-  <div class="row">
+  <%= form_tag 'get_info' , :remote => true do %>
+      <%@page + 1 %>
+      <%= submit_tag "次へ"%>
+  <% end %>
 
-  <% @res['rest'].size.times do |i| %>
-    <div class="col-md-4 hidden-xs">
-      <div class="text-center">
-        <%= link_to @res['rest'][i]['id'] do %>
-        <p class="bg-info">
-          <br>
-            <%
-              image = @res['rest'][i]['image_url']['shop_image1']
-              if image.empty? then
-            %>
-              <%= image_tag 'no_image.jpg'%>
-            <% else %>
-              <%= image_tag image %>
-            <% end %>
-          <br>
-          <%= @res['rest'][i]['name']%><br>
-          <% end %>
-          <br>
-          <%= @res['rest'][i]['access']['line']%>
-          <%= @res['rest'][i]['access']['station']%><br>
-          <%= @res['rest'][i]['access']['walk'] +'分'%>
-        </p>
-      </div>
-    </div>
-  <%end %>
 
-  </div>
+  //１ページの一覧(12個ずつ)
+  <%= render(:partial => "showAll") %>
+
+
   目を表示( <%= @res['total_hit_count'] %>件中<%= @res['page_offset'].to_i * 10 %>件 )
 
-  <%#= paginate @items %>
+  <%#= paginate [1...500] %>
 
 
 </div>
