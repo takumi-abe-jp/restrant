@@ -52,4 +52,5 @@ class IndexController < ApplicationController
     @res = JSON.parse(result.read)
   end
 
+
 end

@@ -21,10 +21,6 @@
     </p>
   </div>
 
-  <%= form_tag 'get_info' , :remote => true do %>
-      <%@page + 1 %>
-      <%= submit_tag "次へ"%>
-  <% end %>
 
 
   //１ページの一覧(12個ずつ)
@@ -34,6 +30,11 @@
   目を表示( <%= @res['total_hit_count'] %>件中<%= @res['page_offset'].to_i * 10 %>件 )
 
   <%#= paginate [1...500] %>
+
+
+  <%= form_tag 'get_info' , :remote => true do %>
+      <%= submit_tag "次へ"%>
+  <% end %>
 
 
 </div>
