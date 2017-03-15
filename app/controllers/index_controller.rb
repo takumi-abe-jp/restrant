@@ -1,33 +1,37 @@
 class IndexController < ApplicationController
   def index
-    keyid     = "a6fe695fd03809023efa81072abccf3b"
-    url       = "https://api.gnavi.co.jp/RestSearchAPI/20150630/"
-    latitude = 35.670083
-    longitude = 139.763267
-    range = 1
+
 
     params = {
-        keyid: keyid,
+        keyid: @@keyid,
         format: 'json',
-        latitude: latitude,
-        longitude: longitude,
-        range: range
+        latitude: @@latitude,
+        longitude: @@longitude,
+        range: @@range
     }
 
-    result = open("#{url}?#{URI.encode_www_form(params)}")
-    result = JSON.parse(result.read)
-    if result['total_hit_count'].to_i > 0 then
-      @res = ''
-      @res = result['total_hit_count'] + '件の結果が見つかりました。\n'
-      result['rest'].size.times do |i|
-        @res += result['rest'][i]['id'] + ' ' + result['rest'][i]['name'] + ' ' + result['rest'][i]['access']['line'] + ' ' + result['rest'][i]['access']['station'] + ' ' + result['rest'][i]['access']['walk'] + '分\n'
-      end
-    else
-      @res = '検索結果が見つかりませんでした。'
-    end
-   end
+    result = open("#{@@url}?#{URI.encode_www_form(params)}")
+    @res = JSON.parse(result.read)
 
+    #todo 別の一覧ページを作ってそこをindexで表示させる。表示させる内容は/0/1/2のようにurlにページ番号
+    items = "..."
+    item_total = @res['total_hit_count']
+    #@items = Kaminari.paginate_array(items, total_count: item_total).page(params[:page]).per(10)
+
+  end
+
+  #todo idをもらってそのidのurlを開く、その時idのapi情報を@resで持ってくる
   def show
+    @id = params[:id]
 
+    params = {
+        keyid: @@keyid,
+        format: 'json',
+        id: @id
+    }
+    result = open("#{@@url}?#{URI.encode_www_form(params)}")
+    @res = JSON.parse(result.read)
+
+    #render :text => "id = #{params[:id]}"
   end
 end

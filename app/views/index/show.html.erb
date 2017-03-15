@@ -1,1 +1,29 @@
-<%= @res %>
+
+<br><br>
+
+<div class="jumbotron">
+  <p class="text-center">
+    <!--画像-->
+    <% 1.upto(2) do |i|%>
+      <%
+        image = @res['rest']['image_url']['shop_image'+i.to_s]
+        if image.empty? then
+      %>
+          <%= image_tag 'no_image.jpg'%>
+      <% else %>
+          <%= image_tag image %>
+      <% end %>
+    <% end %>
+    <br>
+    <!--名称-->
+    <%= @res['rest']['name']%><br>
+    <!--住所-->
+    <%= @res['rest']['address']%><br>
+    <!--営業時間-->
+    <%= @res['rest']['opentime']%><br>
+    <!--電話番号-->
+    <%= @res['rest']['tel']%><br>
+  </p>
+</div>
+
+<p class="text-center"><%= link_to '戻る', :back%></p>

@@ -1,45 +1,58 @@
 
 <div class="container">
 
+  <%
+    if @res['total_hit_count'].to_i > 0 then
+      result = @res['total_hit_count'] + '件の結果が見つかりました。'
+    else
+      result = '結果が見つかりませんでした。'
+    end
+  %>
   <div class="jumbotron">
-    <h1>これは私の最強のアプリです。</h1>
-    <p>Twitter Bootstrap is excellent front page programming tool!</p>
+    <h1>レストラン検索</h1>
+    <p>検索条件を入力してください。</p>
     <p>
-      <a class="btn btn-success btn-lg" href="#">私達のアプリをダウンロードする</a>
-      <a class="btn btn-primary btn-lg" href="#">もっと別のアプリがほしい</a>
+      現在地から
+      半径 以内を検索
+      <a class="btn btn-success btn-lg" href="#">検索する</a>
+
+      <br>検索結果 : <%= result %>
+
     </p>
   </div>
 
   <div class="row">
 
+  <% @res['rest'].size.times do |i| %>
     <div class="col-md-4 hidden-xs">
-      <h2>モダンタイムス</h2>
-      <p>
-        「子供が寝ている間に、両親が話し合いを続けて、で、離婚が決まってから発表されるってのと一緒だ。国ってのは必要最低限のことしか、国民には教えようとしない」<br>
-        「けどな、教師たちは何もできないんだよ。『やめなさい』『暴力は駄目です』なんて口で言うだけなんだ。あれで教育できるって言うんだったら、あの教師たちは今すぐ紛争地域に行って、マイクで、『やめなさい』って叫ぶべきだったな」
-      </p>
+      <div class="text-center">
+        <%= link_to @res['rest'][i]['id'] do %>
+        <p class="bg-info">
+          <br>
+            <%
+              image = @res['rest'][i]['image_url']['shop_image1']
+              if image.empty? then
+            %>
+              <%= image_tag 'no_image.jpg'%>
+            <% else %>
+              <%= image_tag image %>
+            <% end %>
+          <br>
+          <%= @res['rest'][i]['name']%><br>
+          <% end %>
+          <br>
+          <%= @res['rest'][i]['access']['line']%>
+          <%= @res['rest'][i]['access']['station']%><br>
+          <%= @res['rest'][i]['access']['walk'] +'分'%>
+        </p>
+      </div>
     </div>
-
-    <div class="col-md-4 hidden-xs">
-      <h2>死神の精度</h2>
-      <p>
-        要するに、輝くということは、
-        ただちょっと偶然に立ち話をしたような他人にも
-        元気を与えるということだ。
-        だから人間は輝いてないといけないのだが、
-        それは簡単ではない。
-      </p>
-    </div>
-
-    <div class="col-md-4 hidden-xs">
-      <h2>オー！ファーザー</h2>
-      <p>
-        『人間というものは、自分が信じたいと思うものを信じるんだ』
-      </p>
-
-      <%= @res%>
-    </div>
+  <%end %>
 
   </div>
+  目を表示( <%= @res['total_hit_count'] %>件中<%= @res['page_offset'].to_i * 10 %>件 )
+
+  <%#= paginate @items %>
+
 
 </div>
