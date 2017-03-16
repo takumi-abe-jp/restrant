@@ -6,5 +6,6 @@ class ApplicationController < ActionController::Base
   @@latitude = 35.670083
   @@longitude = 139.763267
   @@range = 1
+  @@page = 1
 
 end

@@ -8,6 +8,8 @@
       result = '結果が見つかりませんでした。'
     end
   %>
+
+  <!--todo レストラン検索、位置情報で検索機能-->
   <div class="jumbotron">
     <h1>レストラン検索</h1>
     <p>検索条件を入力してください。</p>
@@ -24,17 +26,13 @@
 
 
   //１ページの一覧(12個ずつ)
-  <%= render(:partial => "showAll") %>
-
-
-  目を表示( <%= @res['total_hit_count'] %>件中<%= @res['page_offset'].to_i * 10 %>件 )
-
-  <%#= paginate [1...500] %>
-
-
-  <%= form_tag 'get_info' , :remote => true do %>
-      <%= submit_tag "次へ"%>
-  <% end %>
-
-
+  <div id="show">
+    <%= render :partial =>'showAll' %>
+  </div>
+  <!--todo ajaxページングにする-->
+  <%= link_to '/'+'4', :remote => false , method: 'get' do %>aa
+  <%end%>
+  update_path(),
+  @res['page_offset'].to_i
+  , :locals => { page: '3' }
 </div>

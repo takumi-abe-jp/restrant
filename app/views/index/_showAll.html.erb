@@ -4,7 +4,7 @@
   <% @res['rest'].size.times do |i| %>
       <div class="col-md-4 hidden-xs">
         <div class="text-center">
-          <%= link_to @res['rest'][i]['id'] do %>
+          <%= link_to '/show/'+@res['rest'][i]['id'] do %>
               <p class="bg-info">
                 <br>
                 <%
@@ -29,6 +29,7 @@
 
 </div>
 
-<% id = @page %>
+<%=@res['page_offset']%>ページ目
+目を表示( <%= @res['total_hit_count'] %>件中:<%= @res['page_offset'].to_i * 12 %>件 )
 
-<%= id %>
+
