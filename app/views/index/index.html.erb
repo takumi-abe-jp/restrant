@@ -24,20 +24,17 @@
     </p>
   </div>
 
-
-
   <!--レストラン一覧(12個ずつ)-->
   <div id="show">
     <%= render :partial =>'showAll' %>
   </div>
 
-
   <!--ページング-->
   <!--todo ajaxページングにする、0以下max以上の例外処理をする-->
-  <%= link_to pages_path(@res['page_offset'].to_i-1) do %>前へ<%end%>
-  <%= link_to pages_path(@res['page_offset'].to_i+1) do %>次へ<%end%>
+  <%= link_to pages_path(@res['page_offset'].to_i-1) do %><p class="btn btn-success btn-lg">前へ</p><%end%>
+  <%= link_to pages_path(@res['page_offset'].to_i+1) do %><p class="btn btn-success btn-lg">次へ</p><%end%>
 
-  <!--結果件数の上限を保存し表示-->
+  <!--ページング2のため結果件数の上限を保存-->
   <!--todo 結果件数がないのに値が更新(インクリ、デクリ)されて違う値がでるところを治す、例外処理-->
   <%
     if @res['page_offset'].to_i*12 <= @res['total_hit_count'].to_i then
@@ -46,7 +43,8 @@
       result = @res['total_hit_count']
     end
   %>
+
+  <!--ページング2-->
   <%=@res['page_offset']%>ページ目を表示( <%= @res['total_hit_count'] %>件中:
   <%=(@res['page_offset'].to_i-1)*12%>件から<%=result%>件 )
-
 </div>
