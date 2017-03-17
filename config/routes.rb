@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'index#index'
   #get 'show' => 'index#show'
   get "/show/:id" => "index#show"
-  get "/:page" => "index#index"
+  get "/:page" => "index#index" ,as: :pages
 
   #post "/" => "sessions#index"
 

@@ -30,7 +30,7 @@
     <%= render :partial =>'showAll' %>
   </div>
   <!--todo ajaxページングにする-->
-  <%= link_to '/'+'4', :remote => false , method: 'get' do %>aa
+  <%= link_to pages_path(@res['page_offset'].to_i+1) ,:remote => false , method: 'get' do %>aa
   <%end%>
   update_path(),
   @res['page_offset'].to_i
