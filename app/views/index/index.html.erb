@@ -37,7 +37,16 @@
   <%= link_to pages_path(@res['page_offset'].to_i-1) do %>前へ<%end%>
   <%= link_to pages_path(@res['page_offset'].to_i+1) do %>次へ<%end%>
 
+  <!--結果件数の上限を保存し表示-->
+  <!--todo 結果件数がないのに値が更新(インクリ、デクリ)されて違う値がでるところを治す、例外処理-->
+  <%
+    if @res['page_offset'].to_i*12 <= @res['total_hit_count'].to_i then
+      result = @res['page_offset'].to_i*12
+    else
+      result = @res['total_hit_count']
+    end
+  %>
   <%=@res['page_offset']%>ページ目を表示( <%= @res['total_hit_count'] %>件中:
-  <%=(@res['page_offset'].to_i-1)*12%>件から <%=@res['page_offset'].to_i*12 %>件 )
+  <%=(@res['page_offset'].to_i-1)*12%>件から<%=result%>件 )
 
 </div>

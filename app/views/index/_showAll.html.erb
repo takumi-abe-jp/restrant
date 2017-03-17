@@ -1,9 +1,9 @@
 
 
 <!--レストラン一覧の本体-->
-<!--todo 表示のレイアウトを揃える-->
+<!--todo 表示のレイアウトを揃える、-->
 <div class="row">
-
+  <% if @res['rest'] then%>
   <% @res['rest'].size.times do |i| %>
       <div class="col-md-4 hidden-xs">
         <div class="text-center">
@@ -28,7 +28,8 @@
           </p>
         </div>
       </div>
-  <%end %>
+  <%end%>
+  <%end%>
 
 </div>
 
