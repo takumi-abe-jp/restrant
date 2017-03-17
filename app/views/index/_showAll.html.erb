@@ -1,4 +1,7 @@
 
+
+<!--レストラン一覧の本体-->
+<!--todo 表示のレイアウトを揃える-->
 <div class="row">
 
   <% @res['rest'].size.times do |i| %>
@@ -29,7 +32,5 @@
 
 </div>
 
-<%=@res['page_offset']%>ページ目
-目を表示( <%= @res['total_hit_count'] %>件中:<%= @res['page_offset'].to_i * 12 %>件 )
 
 

@@ -1,6 +1,7 @@
 
 <div class="container">
 
+  <!--検索結果-->
   <%
     if @res['total_hit_count'].to_i > 0 then
       result = @res['total_hit_count'] + '件の結果が見つかりました。'
@@ -25,14 +26,18 @@
 
 
 
-  //１ページの一覧(12個ずつ)
+  <!--レストラン一覧(12個ずつ)-->
   <div id="show">
     <%= render :partial =>'showAll' %>
   </div>
-  <!--todo ajaxページングにする-->
-  <%= link_to pages_path(@res['page_offset'].to_i+1) ,:remote => false , method: 'get' do %>aa
-  <%end%>
-  update_path(),
-  @res['page_offset'].to_i
-  , :locals => { page: '3' }
+
+
+  <!--ページング-->
+  <!--todo ajaxページングにする、0以下max以上の例外処理をする-->
+  <%= link_to pages_path(@res['page_offset'].to_i-1) do %>前へ<%end%>
+  <%= link_to pages_path(@res['page_offset'].to_i+1) do %>次へ<%end%>
+
+  <%=@res['page_offset']%>ページ目を表示( <%= @res['total_hit_count'] %>件中:
+  <%=(@res['page_offset'].to_i-1)*12%>件から <%=@res['page_offset'].to_i*12 %>件 )
+
 </div>
