@@ -5,6 +5,24 @@
     <meta charset="utf-8">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+    <!--位置情報を取得-->
+    <script>
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                // success callback
+                function(position) {
+                    document.querySelector('#latitude').textContent = "latitude: " + position.coords.latitude;
+                    document.querySelector('#longitude').textContent = "longitude: " + position.coords.longitude;
+                },
+                // error callback
+                function(position) {
+                    alert( "can't get position" );
+                }
+            )
+        }
+    </script>
   </head>
 
   <body>

@@ -10,19 +10,30 @@
     end
   %>
 
-  <!--todo レストラン検索、位置情報で検索機能-->
+  <!--検索枠-->
+  <!--todo 位置情報で検索機能-->
   <div class="jumbotron">
     <h1>レストラン検索</h1>
     <p>検索条件を入力してください。</p>
-    <p>
-      現在地から
-      半径 以内を検索
-      <a class="btn btn-success btn-lg" href="#">検索する</a>
-
+      <%= form_tag root_path ,action: 'index',method: 'get' do %>
+        <p>現在地
+          緯度:<%= text_field_tag :latitude,@latitude ,id: 'latitude'%>
+          経度:<%= text_field_tag :longitude,@longitude ,id: 'longitude'%>
+        </p>
+        <p>半径
+          <%= text_field_tag :range,@range %>
+        m 以内のお店</p>
+        <%= submit_tag '検索' %>
+    <% end %>
       <br>検索結果 : <%= result %>
 
-    </p>
+    :::
+
   </div>
+  lang :<%= @latitude %>
+  longi:<%= @longitude %>
+ range : <%= @range%>
+  page:<%= @page %>
 
   <!--レストラン一覧(12個ずつ)-->
   <div id="show">
@@ -31,20 +42,24 @@
 
   <!--ページング-->
   <!--todo ajaxページングにする、0以下max以上の例外処理をする-->
-  <%= link_to pages_path(@res['page_offset'].to_i-1) do %><p class="btn btn-success btn-lg">前へ</p><%end%>
-  <%= link_to pages_path(@res['page_offset'].to_i+1) do %><p class="btn btn-success btn-lg">次へ</p><%end%>
+  <div class="text-center">
+    <br><br>
+    <%= link_to pages_path(@res['page_offset'].to_i-1) do %><p class="btn btn-success btn-lg">前へ</p><%end%>
+    <%= link_to pages_path(@res['page_offset'].to_i+1) do %><p class="btn btn-success btn-lg">次へ</p><%end%>
+    <br>
 
-  <!--ページング2のため結果件数の上限を保存-->
-  <!--todo 結果件数がないのに値が更新(インクリ、デクリ)されて違う値がでるところを治す、例外処理-->
-  <%
-    if @res['page_offset'].to_i*12 <= @res['total_hit_count'].to_i then
-      result = @res['page_offset'].to_i*12
-    else
-      result = @res['total_hit_count']
-    end
-  %>
+    <!--ページング2のため結果件数の上限を保存-->
+    <!--todo 結果件数がないのに値が更新(インクリ、デクリ)されて違う値がでるところを治す、例外処理-->
+    <%
+      if @res['page_offset'].to_i*12 <= @res['total_hit_count'].to_i then
+        result = @res['page_offset'].to_i*12
+      else
+        result = @res['total_hit_count']
+      end
+    %>
 
-  <!--ページング2-->
-  <%=@res['page_offset']%>ページ目を表示( <%= @res['total_hit_count'] %>件中:
-  <%=(@res['page_offset'].to_i-1)*12%>件から<%=result%>件 )
+    <!--ページング2-->
+    <%=@res['page_offset']%>ページ目を表示( <%= @res['total_hit_count'] %>件中:
+    <%=(@res['page_offset'].to_i-1)*12%>件から<%=result%>件 )
+  </div>
 </div>
