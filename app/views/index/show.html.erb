@@ -1,7 +1,6 @@
 
 <!--詳細画面-->
 <!--todo 営業時間パラメータに<BR>がある場合のエンコード処理-->
-<!--todo 営業時間の空ではないempty処理-->
 <br><br>
 
 <div class="jumbotron">
@@ -41,12 +40,10 @@
     <% end %>
     <br>
 
-
-
     <!--営業時間-->
     <%
       opentime = @res['rest']['opentime']
-      if opentime.empty? then
+      if opentime.empty? || opentime["0"] == " " then
     %>
         <%='開店時間情報がありません'%>
     <% else %>

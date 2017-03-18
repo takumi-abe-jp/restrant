@@ -1,6 +1,7 @@
 class IndexController < ApplicationController
 
   def index
+    res_back = @res
     @@page = params[:page]
 
     #位置情報がなかったら検索
@@ -25,6 +26,7 @@ class IndexController < ApplicationController
     }
     result = open("#{@@url}?#{URI.encode_www_form(params)}")
     @res = JSON.parse(result.read)
+
   end
 
   def show
