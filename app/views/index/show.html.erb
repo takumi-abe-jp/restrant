@@ -1,10 +1,22 @@
 
 <!--詳細画面-->
-<!--todo パラメータがemptyの場合の例外処理-->
+<!--todo パラメータに<BR>がある場合のエンコード処理-->
 <br><br>
 
 <div class="jumbotron">
-  <p class="text-center">
+  <div class="text-center">
+
+    <!--名称-->
+    <%
+      name = @res['rest']['name']
+      if name.empty? then
+    %>
+        <%='店舗名情報がありません'%>
+    <% else %>
+      <h1 class="text-center"><%= name %></h1>
+    <% end %><br><br>
+
+
     <!--画像-->
     <% 1.upto(2) do |i|%>
       <%
@@ -17,15 +29,38 @@
       <% end %>
     <% end %>
     <br>
-    <!--名称-->
-    <%= @res['rest']['name']%><br>
+
     <!--住所-->
-    <%= @res['rest']['address']%><br>
+    <%
+      address = @res['rest']['address']
+      if address.empty? then
+    %>
+        <%='住所情報がありません'%>
+    <% else %>
+        <%= address %>
+    <% end %><br>
+
     <!--営業時間-->
-    <%= @res['rest']['opentime']%><br>
+    <%
+      opentime = @res['rest']['opentime']
+      if opentime.empty? then
+    %>
+        <%='開店時間情報がありません'%>
+    <% else %>
+        <%= opentime %>
+    <% end %><br>
+
     <!--電話番号-->
-    <%= @res['rest']['tel']%><br>
-  </p>
+    <%
+      tel = @res['rest']['tel']
+      if tel.empty? then
+    %>
+        <%='電話情報がありません'%>
+    <% else %>
+        <%= tel %>
+    <% end %><br>
+
+  </div>
 </div>
 
 <p class="text-center"><%= link_to '戻る', :back%></p>
