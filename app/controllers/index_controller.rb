@@ -10,10 +10,10 @@ class IndexController < ApplicationController
     end
 
     #Viewで使えるように定義
-    @latitude = @@latitude
-    @longitude = @@longitude
-    @range = @@range
-    @page = @@page
+    # @latitude = @@latitude
+    # @longitude = @@longitude
+    # @range = @@range
+    # @page = @@page
 
     params = {
         keyid: @@keyid,

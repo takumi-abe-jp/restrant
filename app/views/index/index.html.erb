@@ -9,24 +9,9 @@
       result = '結果が見つかりませんでした。'
     end
   %>
+  <br>検索結果 : <%= result %>
 
-  <!--検索枠-->
-  <!--todo 住所で検索機能-->
-  <div class="jumbotron">
-    <h1>レストラン検索</h1>
-    <p>検索条件を入力してください。</p>
-      <%= form_tag root_path ,action: 'index' do %>
-        <p>現在地
-          緯度:<%= text_field_tag :latitude,@latitude ,id: 'latitude'%>
-          経度:<%= text_field_tag :longitude,@longitude ,id: 'longitude'%>
-        </p>
-        <p>半径
-          <%= text_field_tag :range,(@range.to_i*300) %>
-        m 以内のお店(300mごと)</p>
-        <%= submit_tag '検索' %>
-    <% end %>
-      <br>検索結果 : <%= result %>
-  </div>
+
 
   <!--レストラン一覧(12個ずつ)-->
   <div id="show">

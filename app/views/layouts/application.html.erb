@@ -30,10 +30,16 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <a class="navbar-brand text-muted" href="/">HOME</a>
-        <ul class="nav navbar-nav navbar-right">
+
+        <!--検索フォーム-->
+        <%=render :partial =>'form'%>
+
+        <!--todo 地図と周辺を選択することでMap表示と一覧表示で切り替えて検索、表示できるようにする-->
+        <ul class="nav navbar-nav navbar-left">
           <li class="active"><a href="/">周辺検索</a></li>
           <li><a href="/">地図検索</a></li>
         </ul>
+
       </div>
     </div>
     <!-- End of Navber -->
