@@ -2,12 +2,11 @@
 
 <!--レストラン一覧の本体-->
 <!--todo 表示のレイアウトを揃える、-->
-<div class="row">
+<div class="list-group">
   <% if @res['rest'] then%>
     <% @res['rest'].size.times do |i| %>
         <div class="col-md-4 hidden-xs">
-          <div class="text-center">
-                <a class="bg-info btn btn-success btn-lg" href=<%='/show/'+@res['rest'][i]['id'] %> >
+            <a class="list-group-item list-group-item-action flex-column align-items-start" href=<%='/show/'+@res['rest'][i]['id'] %> >
                   <br>
                   <!--画像-->
                   <%
@@ -65,11 +64,11 @@
                       <%=walk%>分
                   <%end%>
             </a>
+
           </div>
         </div>
     <%end%>
   <%end%>
-
 </div>
 
 
