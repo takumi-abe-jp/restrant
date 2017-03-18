@@ -1,6 +1,7 @@
 
 <!--詳細画面-->
-<!--todo パラメータに<BR>がある場合のエンコード処理-->
+<!--todo 営業時間パラメータに<BR>がある場合のエンコード処理-->
+<!--todo 営業時間の空ではないempty処理-->
 <br><br>
 
 <div class="jumbotron">
@@ -16,6 +17,16 @@
       <h1 class="text-center"><%= name %></h1>
     <% end %><br><br>
 
+    <!--住所-->
+    <h3>
+    <%
+      address = @res['rest']['address']
+      if address.empty? then
+    %>
+        <%='住所情報がありません'%>
+    <% else %>
+        <%= address %>
+    <% end %><br><br>
 
     <!--画像-->
     <% 1.upto(2) do |i|%>
@@ -30,15 +41,7 @@
     <% end %>
     <br>
 
-    <!--住所-->
-    <%
-      address = @res['rest']['address']
-      if address.empty? then
-    %>
-        <%='住所情報がありません'%>
-    <% else %>
-        <%= address %>
-    <% end %><br>
+
 
     <!--営業時間-->
     <%
@@ -48,7 +51,7 @@
         <%='開店時間情報がありません'%>
     <% else %>
         <%= opentime %>
-    <% end %><br>
+    <% end %><br><br>
 
     <!--電話番号-->
     <%
@@ -59,7 +62,7 @@
     <% else %>
         <%= tel %>
     <% end %><br>
-
+    </h3>
   </div>
 </div>
 

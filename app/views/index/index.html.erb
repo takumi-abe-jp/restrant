@@ -11,11 +11,11 @@
   %>
 
   <!--検索枠-->
-  <!--todo 位置情報で検索機能-->
+  <!--todo 住所で検索機能-->
   <div class="jumbotron">
     <h1>レストラン検索</h1>
     <p>検索条件を入力してください。</p>
-      <%= form_tag root_path ,action: 'index',method: 'post' do %>
+      <%= form_tag root_path ,action: 'index' do %>
         <p>現在地
           緯度:<%= text_field_tag :latitude,@latitude ,id: 'latitude'%>
           経度:<%= text_field_tag :longitude,@longitude ,id: 'longitude'%>
@@ -26,14 +26,7 @@
         <%= submit_tag '検索' %>
     <% end %>
       <br>検索結果 : <%= result %>
-
-    :::
-
   </div>
-  lang :<%= @latitude %>
-  longi:<%= @longitude %>
- range : <%= @range%>
-  page:<%= @page %>
 
   <!--レストラン一覧(12個ずつ)-->
   <div id="show">
@@ -59,7 +52,13 @@
     %>
 
     <!--ページング2-->
+    <%
+      page_count = (@res['page_offset'].to_i-1)*12
+      if page_count == 0 then
+        page_count = 1
+      end
+    %>
     <%=@res['page_offset']%>ページ目を表示( <%= @res['total_hit_count'] %>件中:
-    <%=(@res['page_offset'].to_i-1)*12%>件から<%=result%>件 )
+    <%=page_count%>件から<%=result%>件 )
   </div>
 </div>
