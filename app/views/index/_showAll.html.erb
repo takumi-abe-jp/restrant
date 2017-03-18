@@ -9,6 +9,7 @@
           <div class="text-center">
                 <a class="bg-info btn btn-success btn-lg" href=<%='/show/'+@res['rest'][i]['id'] %> >
                   <br>
+                  <!--画像-->
                   <%
                     image = @res['rest'][i]['image_url']['shop_image1']
                     if image.empty? then
@@ -17,12 +18,47 @@
                   <% else %>
                       <%= image_tag image %>
                   <% end %>
+
+                  <!--店舗名-->
                   <br>
-                  <%= @res['rest'][i]['name']%><br>
-            <br>
-            <%= @res['rest'][i]['access']['line']%>
-            <%= @res['rest'][i]['access']['station']%><br>
-            <%= @res['rest'][i]['access']['walk'] +'分'%>
+                  <%
+                    name = @res['rest'][i]['name']
+                    if name.empty? then
+                  %>
+                      <%='名前情報がありません'%>
+                  <%else%>
+                      <%=name%>
+                  <%end%><br><br>
+
+                  <!--路線-->
+                  <%
+                    line = @res['rest'][i]['access']['line']
+                    if line.empty? then
+                  %>
+                      <%='路線情報がありません'%>
+                  <%else%>
+                      <%=line%>
+                  <%end%>
+
+                  <!--駅名-->
+                  <%
+                    station = @res['rest'][i]['access']['station']
+                    if station.empty? then
+                  %>
+                      <%='駅情報がありません'%>
+                  <%else%>
+                      <%=station%>
+                  <%end%><br>
+
+                  <!--徒歩の距離-->
+                  <%
+                    walk = @res['rest'][i]['access']['walk']
+                    if walk.empty? then
+                  %>
+                      <%='距離情報がありません'%>
+                  <%else%>
+                      <%=walk%>分
+                  <%end%>
             </a>
           </div>
         </div>

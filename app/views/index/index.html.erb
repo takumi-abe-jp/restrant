@@ -15,14 +15,14 @@
   <div class="jumbotron">
     <h1>レストラン検索</h1>
     <p>検索条件を入力してください。</p>
-      <%= form_tag root_path ,action: 'index',method: 'get' do %>
+      <%= form_tag root_path ,action: 'index',method: 'post' do %>
         <p>現在地
           緯度:<%= text_field_tag :latitude,@latitude ,id: 'latitude'%>
           経度:<%= text_field_tag :longitude,@longitude ,id: 'longitude'%>
         </p>
         <p>半径
-          <%= text_field_tag :range,@range %>
-        m 以内のお店</p>
+          <%= text_field_tag :range,(@range.to_i*300) %>
+        m 以内のお店(300mごと)</p>
         <%= submit_tag '検索' %>
     <% end %>
       <br>検索結果 : <%= result %>

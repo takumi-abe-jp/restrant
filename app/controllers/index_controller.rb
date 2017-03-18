@@ -11,7 +11,7 @@ class IndexController < ApplicationController
     #Viewで使えるように定義
     @latitude = @@latitude
     @longitude = @@longitude
-    @@range = @@range
+    @range = @@range
     @page = @@page
 
     params = {
