@@ -34,40 +34,7 @@
   </div>
 
   <!--ページング-->
-  <!--todo ajaxページングにする、0以下max以上urlリクエストで上限や下限を設定する(max==42のとき50をリクエストされたら42を表示)-->
-  <div class="text-center">
-    <br><br>
-    <%
-      min_page =  1
-      if @res['page_offset'].to_i == min_page then
-      else
-    %>
-      <%= link_to pages_path(@res['page_offset'].to_i-1) do %><p class="btn btn-success btn-lg">前へ</p><%end%>
-    <%end%>
-    <%
-      max_page =  (@res['total_hit_count'].to_i / @res['hit_per_page'].to_i)+1
-      if @res['page_offset'].to_i >= max_page then
-      else
-    %>
-      <%= link_to pages_path(@res['page_offset'].to_i+1) do %><p class="btn btn-success btn-lg">次へ</p><%end%>
-    <%end%>
-    <br>
-    <!--ページング2のため結果件数の上限を保存-->
-    <%
-      #~max以上の値表示ではなく、~max件表示にする
-      if @res['page_offset'].to_i*12 <= @res['total_hit_count'].to_i then
-        result = @res['page_offset'].to_i*12
-      else
-        result = @res['total_hit_count']
-      end
-      #0~max件ではなく1~max件を表示にする
-      page_count = (@res['page_offset'].to_i-1)*12
-      if page_count == 0 then
-        page_count = 1
-      end
-    %>
-    <!--ページング2、フッター-->
-    <%=@res['page_offset']%>ページ目を表示( <%= @res['total_hit_count'] %>件中:
-    <%=page_count%>件から<%=result%>件 )
+  <div id="paging">
+    <%= render :partial =>'paging' %>
   </div>
 </div>
