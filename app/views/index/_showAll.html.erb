@@ -12,9 +12,14 @@
                   <!--画像-->
                   <%
                     image = @res['rest'][i]['image_url']['shop_image1']
+                    image2 = @res['rest'][i]['image_url']['shop_image2']
                     if image.empty? then
+                      if image2.empty? then
                   %>
-                      <%= image_tag 'no_image.jpg'%>
+                          <%= image_tag 'no_image.jpg'%>
+                      <%else%>
+                          <%= image_tag image2 %>
+                      <%end%>
                   <% else %>
                       <%= image_tag image %>
                   <% end %>
