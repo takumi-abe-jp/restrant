@@ -23,6 +23,7 @@ class IndexController < ApplicationController
     result = open("#{@@url}?#{URI.encode_www_form(params)}")
     @res = JSON.parse(result.read)
 
+    setForm
   end
 
   def show
@@ -35,6 +36,8 @@ class IndexController < ApplicationController
     }
     result = open("#{@@url}?#{URI.encode_www_form(params)}")
     @res = JSON.parse(result.read)
+
+    setForm
   end
 
   def getLocation
@@ -44,4 +47,8 @@ class IndexController < ApplicationController
     @@page = 1
   end
 
+  def setForm
+    @latitude = @@latitude
+    @longitude = @@longitude
+  end
 end

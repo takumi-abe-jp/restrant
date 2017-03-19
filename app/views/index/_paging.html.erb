@@ -45,7 +45,11 @@
       <%= link_to pages_path(@res['page_offset'].to_i-1) do %><p class="navbar-brand">前へ</p><%end%>
   <%end%>
   <%
-    max_page =  (@res['total_hit_count'].to_i / @res['hit_per_page'].to_i)+1
+    if @res['total_hit_count'].to_i == 0 then
+      max_page = 0
+    else
+      max_page =  (@res['total_hit_count'].to_i / @res['hit_per_page'].to_i)+1
+    end
     if @res['page_offset'].to_i >= max_page then
     else
   %>

@@ -2,8 +2,8 @@
 <!--todo 住所で検索機能-->
 <%= bootstrap_form_tag url:root_path ,action: 'index', layout: :inline  do %>
     <p class="navbar-brand navbar-right">
-      <%= hidden_field_tag :latitude,'' ,id: 'latitude',class: "form-control mr-sm-2"%>
-      <%= hidden_field_tag :longitude,'' ,id: 'longitude',class: "form-control mr-sm-2"%>
+      <%= hidden_field_tag :latitude,@latitude ,id: 'latitude',class: "form-control mr-sm-2"%>
+      <%= hidden_field_tag :longitude,@longitude ,id: 'longitude',class: "form-control mr-sm-2"%>
 
       <!--rangeドロップダウン-->
       現在地から半径
