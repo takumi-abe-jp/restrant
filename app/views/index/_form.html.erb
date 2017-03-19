@@ -4,8 +4,11 @@
     <p class="navbar-brand navbar-right">
       <%= hidden_field_tag :latitude,'' ,id: 'latitude',class: "form-control mr-sm-2"%>
       <%= hidden_field_tag :longitude,'' ,id: 'longitude',class: "form-control mr-sm-2"%>
-      現在地から半径<%= text_field_tag :range,(@range.to_i*300),class: "form-control mr-sm-2" %>
-      m 以内のお店(300mごと)
+
+      <!--rangeドロップダウン-->
+      現在地から半径
+      <%= select_tag 'range', options_for_select([["300","1"], ["500","2"], ["1000","3"], ["2000","4"], ["3000","5"]],:selected=>"2") %>
+      m 以内のお店
       <%= submit_tag '検索' , class: "btn btn-outline-success my-2 my-sm-0" %>
     </p>
 <% end %>

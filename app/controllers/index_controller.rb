@@ -4,16 +4,12 @@ class IndexController < ApplicationController
     res_back = @res
     @@page = params[:page]
 
-    #位置情報がなかったら検索
+    #検索がおされたら位置情報をいれる
     if params[:commit] == '検索' then
       getLocation
     end
 
-    #Viewで使えるように定義
-    # @latitude = @@latitude
-    # @longitude = @@longitude
-    # @range = @@range
-    # @page = @@page
+    @range = @@range
 
     params = {
         keyid: @@keyid,
@@ -21,7 +17,7 @@ class IndexController < ApplicationController
         latitude: @@latitude,
         longitude: @@longitude,
         range: @@range,
-        hit_per_page: 12,
+        hit_per_page: @@per_page,
         offset_page: @@page
     }
     result = open("#{@@url}?#{URI.encode_www_form(params)}")
@@ -44,7 +40,7 @@ class IndexController < ApplicationController
   def getLocation
     @@latitude = params[:latitude]
     @@longitude = params[:longitude]
-    @@range = params[:range].to_i/300
+    @@range = params[:range]
     @@page = 1
   end
 

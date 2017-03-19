@@ -1,19 +1,7 @@
 
 <div class="container">
 
-  <!--検索結果-->
-  <%
-    if @res['total_hit_count'].to_i > 0 then
-      result = @res['total_hit_count'] + '件の結果が見つかりました。'
-    else
-      result = '結果が見つかりませんでした。'
-    end
-  %>
-  <br>検索結果 : <%= result %>
-
-
-
-  <!--レストラン一覧(12個ずつ)-->
+  <!--レストラン一覧(hit_per_page個ずつ)-->
   <div id="show">
     <%= render :partial =>'showAll' %>
   </div>

@@ -1,41 +1,54 @@
-<!--ページング-->
+<!--ページング、ふったー-->
 <!--todo ajaxページングにする、0以下max以上urlリクエストで上限や下限を設定する(max==42のとき50をリクエストされたら42を表示)-->
 
 <div class="navbar navbar-inverse navbar-fixed-bottom">
 
-  <!--ページング2のため結果件数の上限を保存-->
+  <!--ページングステータス表示のため結果件数の上限を保存-->
   <%
     #~max以上の値表示ではなく、~max件表示にする
-    if @res['page_offset'].to_i*12 <= @res['total_hit_count'].to_i then
-      result = @res['page_offset'].to_i*12
+    if @res['page_offset'].to_i*@res['hit_per_page'].to_i<= @res['total_hit_count'].to_i then
+      result = @res['page_offset'].to_i*@res['hit_per_page'].to_i
     else
       result = @res['total_hit_count']
     end
     #0~max件ではなく1~max件を表示にする
-    page_count = (@res['page_offset'].to_i-1)*12
+    page_count = (@res['page_offset'].to_i-1)*@res['hit_per_page'].to_i
     if page_count == 0 then
       page_count = 1
     end
   %>
 
-  <!--ページング2-->
+  <!--ページング-->
   <p class="navbar-brand">
+    <!--検索結果-->
+    <%
+      serchresult = ''
+      if @res['total_hit_count'].to_i > 0 then
+        serchresult += @res['total_hit_count'] + '件の結果が見つかりました。'
+      else
+        serchresult += '結果が見つかりませんでした。'
+      end
+    %>
+    <%= serchresult %>
+
+    <!--ページングのステータス表示-->
     <%=@res['page_offset']%>ページ目を表示( <%= @res['total_hit_count'] %>件中:
     <%=page_count%>件から<%=result%>件 )
   </p>
-    <%
-      min_page =  1
-      if @res['page_offset'].to_i == min_page then
-      else
-    %>
-        <%= link_to pages_path(@res['page_offset'].to_i-1) do %><p class="navbar-brand">前へ</p><%end%>
-    <%end%>
-    <%
-      max_page =  (@res['total_hit_count'].to_i / @res['hit_per_page'].to_i)+1
-      if @res['page_offset'].to_i >= max_page then
-      else
-    %>
-        <%= link_to pages_path(@res['page_offset'].to_i+1) do %><p class="navbar-brand">次へ</p><%end%>
-    <%end%>
-  </div>
+
+  <!--ページング本体-->
+  <%
+    min_page =  1
+    if @res['page_offset'].to_i == min_page then
+    else
+  %>
+      <%= link_to pages_path(@res['page_offset'].to_i-1) do %><p class="navbar-brand">前へ</p><%end%>
+  <%end%>
+  <%
+    max_page =  (@res['total_hit_count'].to_i / @res['hit_per_page'].to_i)+1
+    if @res['page_offset'].to_i >= max_page then
+    else
+  %>
+      <%= link_to pages_path(@res['page_offset'].to_i+1) do %><p class="navbar-brand">次へ</p><%end%>
+  <%end%>
 </div>

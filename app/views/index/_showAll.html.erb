@@ -3,72 +3,70 @@
 <!--レストラン一覧の本体-->
 <!--todo 表示のレイアウトを揃える、-->
 <div class="list-group">
+  <br><br><br><br><br>
   <% if @res['rest'] then%>
     <% @res['rest'].size.times do |i| %>
-        <div class="col-md-4 hidden-xs">
-            <a class="list-group-item list-group-item-action flex-column align-items-start" href=<%='/show/'+@res['rest'][i]['id'] %> >
-                  <br>
-                  <!--画像-->
-                  <%
-                    image = @res['rest'][i]['image_url']['shop_image1']
-                    image2 = @res['rest'][i]['image_url']['shop_image2']
-                    if image.empty? then
-                      if image2.empty? then
-                  %>
-                          <%= image_tag 'no_image.jpg'%>
-                      <%else%>
-                          <%= image_tag image2 %>
-                      <%end%>
-                  <% else %>
-                      <%= image_tag image %>
-                  <% end %>
+      <a class="list-group-item" href=<%='/show/'+@res['rest'][i]['id'] %> >
+        <br>
+        <!--画像-->
+        <%
+          image = @res['rest'][i]['image_url']['shop_image1']
+          image2 = @res['rest'][i]['image_url']['shop_image2']
+          if image.empty? then
+            if image2.empty? then
+        %>
+                <%= image_tag 'no_image.jpg'%>
+            <%else%>
+                <%= image_tag image2 %>
+            <%end%>
+        <% else %>
+            <%= image_tag image %>
+        <% end %>
 
-                  <!--店舗名-->
-                  <br>
-                  <%
-                    name = @res['rest'][i]['name']
-                    if name.empty? then
-                  %>
-                      <%='名前情報がありません'%>
-                  <%else%>
-                      <%=name%>
-                  <%end%><br><br>
+        <!--店舗名-->
+        <br>
+        <%
+          name = @res['rest'][i]['name']
+          if name.empty? || name["0"] == " " then
+        %>
+            <%='名前情報がありません'%>
+        <%else%>
+            <%=name%>
+        <%end%><br><br>
 
-                  <!--路線-->
-                  <%
-                    line = @res['rest'][i]['access']['line']
-                    if line.empty? then
-                  %>
-                      <%='路線情報がありません'%>
-                  <%else%>
-                      <%=line%>
-                  <%end%>
+        <!--路線-->
+        <%
+          line = @res['rest'][i]['access']['line']
+          if line.empty? || line["0"] == " " then
+        %>
+            <%='路線情報がありません'%>
+        <%else%>
+            <%=line%>
+        <%end%>
 
-                  <!--駅名-->
-                  <%
-                    station = @res['rest'][i]['access']['station']
-                    if station.empty? then
-                  %>
-                      <%='駅情報がありません'%>
-                  <%else%>
-                      <%=station%>
-                  <%end%><br>
+        <!--駅名-->
+        <%
+          station = @res['rest'][i]['access']['station']
+          if station.empty? || station["0"] == " " then
+        %>
+            <%='駅情報がありません'%>
+        <%else%>
+            <%=station%>
+        <%end%><br>
 
-                  <!--徒歩の距離-->
-                  <%
-                    walk = @res['rest'][i]['access']['walk']
-                    if walk.empty? then
-                  %>
-                      <%='距離情報がありません'%>
-                  <%else%>
-                      <%=walk%>分
-                  <%end%>
-            </a>
-
-          </div>
-        </div>
+        <!--徒歩の距離-->
+        <%
+          walk = @res['rest'][i]['access']['walk']
+          if walk.empty? || walk["0"] == " " then
+        %>
+            <%='距離情報がありません'%>
+        <%else%>
+            <%=walk%>分
+        <%end%>
+      </a>
     <%end%>
   <%end%>
+  <br><br><br><br><br>
 </div>
 
 

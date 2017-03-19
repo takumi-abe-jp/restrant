@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   @@url       = "https://api.gnavi.co.jp/RestSearchAPI/20150630/"
   @@latitude = ''
   @@longitude = ''
-  @@range = ''
+  @@range = 2
+  @@per_page = 20
   @@page = 1
 end
