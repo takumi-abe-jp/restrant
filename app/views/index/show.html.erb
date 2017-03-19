@@ -62,6 +62,18 @@
         場所：
         <%= address %>
     <% end %><br><br>
+
+    <!--url-->
+    <%
+      url = @res['rest']['url']
+      if url.empty? || url["0"] == " " then
+    %>
+        <%='サイト情報がありません'%>
+    <% else %>
+
+        <%= link_to 'ぐるなびで見る',url %>
+    <% end %><br><br>
+
   </h3>
 </div>
 <!--googlemapで住所表示-->
