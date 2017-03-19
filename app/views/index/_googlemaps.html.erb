@@ -1,0 +1,18 @@
+<!-- スタイルシートの読み込み -->
+<style> #map { 	width: 100% ;  height: 350px ; }</style>
+<!-- Google Mapsライブラリの読み込み -->
+<script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 8
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMBo_U9J4LGZt7iTW9HqEv-Zvtf5la1Ng&callback=initMap">
+</script>
+<!-- 地図が描画されるキャンパス -->
+<div id="map">ここに地図が表示されます</div>
+
