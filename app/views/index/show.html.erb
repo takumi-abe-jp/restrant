@@ -14,54 +14,54 @@
     <h2 class="text-center"><%= name %></h2>
   <% end %><br><br>
 
-  <!--住所-->
   <h3>
-  <%
-    address = @res['rest']['address']
-    if address.empty? || address["0"] == " " then
-  %>
-      <%='住所情報がありません'%>
-  <% else %>
-      <%= address %>
-  <% end %><br><br>
-
-  <!--画像-->
-    <div class="jumbotron">
-  <% 1.upto(2) do |i|%>
-    <%
-      image = @res['rest']['image_url']['shop_image'+i.to_s]
-      if image.empty? then
-    %>
-        <%= image_tag 'no_image.jpg'%>
-    <% else %>
-        <%= image_tag image %>
+    <!--画像-->
+      <div class="jumbotron">
+    <% 1.upto(2) do |i|%>
+      <%
+        image = @res['rest']['image_url']['shop_image'+i.to_s]
+        if image.empty? then
+      %>
+          <%= image_tag 'no_image.jpg'%>
+      <% else %>
+          <%= image_tag image %>
+      <% end %>
     <% end %>
-  <% end %>
-    </div>
-  <br>
+      </div>
+    <br>
 
-  <!--営業時間-->
-  <%
-    opentime = @res['rest']['opentime']
-    if opentime.empty? || opentime["0"] == " " then
-  %>
-      <%='開店時間情報がありません'%>
-  <% else %>
-      <%= opentime %>
-  <% end %><br><br>
+    <!--営業時間-->
+    <%
+      opentime = @res['rest']['opentime']
+      if opentime.empty? || opentime["0"] == " " then
+    %>
+        <%='開店時間情報がありません'%>
+    <% else %>
+        <%= opentime %>
+    <% end %><br><br>
 
-  <!--電話番号-->
-  <%
-    tel = @res['rest']['tel']
-    if tel.empty? || tel["0"] == " " then
-  %>
-      <%='電話情報がありません'%>
-  <% else %>
-      <%= tel %>
-  <% end %><br>
+    <!--電話番号-->
+    <%
+      tel = @res['rest']['tel']
+      if tel.empty? || tel["0"] == " " then
+    %>
+        <%='電話情報がありません'%>
+    <% else %>
+        <%= tel %>
+    <% end %><br><br><br>
+
+  <!--住所-->
+    <%
+      address = @res['rest']['address']
+      if address.empty? || address["0"] == " " then
+    %>
+        <%='住所情報がありません'%>
+    <% else %>
+        <%= address %>
+    <% end %><br><br>
   </h3>
 </div>
-
+<!--googlemapで住所表示-->
 <div id="googlemaps">
   <%= render :partial =>'googlemaps' %>
 </div>
